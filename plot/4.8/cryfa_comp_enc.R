@@ -85,9 +85,7 @@ df_size <- data.frame(
   total.size = as.numeric(size_data[, 6]) / 1024,
   ratio = as.numeric(size_data[, 7])
 )
-df_size <- df_size %>%
-  group_by(method, format) %>%
-  mutate(lab_ypos = cumsum(size) - 0.5 * size)
+df_size <- df_size %>% group_by(method, format) %>% mutate(lab_ypos = cumsum(size) - 0.5 * size)
 
 # Plot
 a <- ggplot(df_time, aes(x = order, y = time, fill = state)) +
@@ -95,16 +93,10 @@ a <- ggplot(df_time, aes(x = order, y = time, fill = state)) +
   coord_flip() +
   facet_grid(format ~ ., scales = "free", space = "free") +
   geom_text(
-    aes(
-      y = lab_ypos,
-      label = ifelse(state == "enc", -round(time, 1), round(time, 1))
-    ),
+    aes(y = lab_ypos, label = ifelse(state == "enc", -round(time, 1), round(time, 1))),
     size = 3,
     color = ifelse(df_time$format == "FASTA" &
-      (
-        df_time$method == "Cryfa" |
-          (df_time$method == "gzip + AES Crypt" & df_time$state == "dec")
-      ),
+      (df_time$method == "Cryfa" | (df_time$method == "gzip + AES Crypt" & df_time$state == "dec")),
     "black",
     "white"
     ),
@@ -112,12 +104,7 @@ a <- ggplot(df_time, aes(x = order, y = time, fill = state)) +
     hjust = ifelse(
       df_time$state == "enc",
       ifelse(df_time$format == "FASTA" & df_time$method == "Cryfa", 1.3, -0.3),
-      ifelse(
-        df_time$format == "FASTA" &
-          df_time$method %in% c("Cryfa", "gzip + AES Crypt"),
-        -0.3,
-        1.3
-      )
+      ifelse(df_time$format == "FASTA" & df_time$method %in% c("Cryfa", "gzip + AES Crypt"), -0.3, 1.3)
     )
   ) +
   ylab("Time (min)") +
@@ -125,37 +112,18 @@ a <- ggplot(df_time, aes(x = order, y = time, fill = state)) +
   scale_fill_discrete(
     name = "",
     breaks = c("enc", "dec"),
-    labels = c(
-      "Compress &\nEncrypt                           ",
-      "Decrypt &\nDecompress"
-    )
+    labels = c("Compress &\nEncrypt                           ", "Decrypt &\nDecompress")
   ) +
   scale_y_continuous(breaks = c(0), labels = c(0)) +
   scale_x_discrete(breaks = df_time$order, labels = df_time$method) +
   geom_hline(yintercept = 0)
 
-b <- ggplot(
-  df_size,
-  aes(x = order, y = size, fill = state)
-) +
+b <- ggplot(df_size, aes(x = order, y = size, fill = state)) +
   geom_blank(aes(x = order, y = size * 1.35)) +
   geom_col() +
-  geom_text(
-    aes(label = round(size, digits = 1)),
-    position = position_stack(0.5),
-    size = 3,
-    color = "white"
-  ) +
-  geom_text(
-    aes(y = total.size, label = paste0("CR=", round(ratio, digits = 1))),
-    vjust = -0.75,
-    size = 2.25
-  ) +
-  theme(
-    axis.title.x = element_blank(),
-    axis.text.x = element_text(angle = -35, hjust = 0),
-    legend.position = "right"
-  ) +
+  geom_text(aes(label = round(size, digits = 1)), position = position_stack(0.5), size = 3, color = "white") +
+  geom_text(aes(y = total.size, label = paste0("CR=", round(ratio, digits = 1))), vjust = -0.75, size = 2.25) +
+  theme(axis.title.x = element_blank(), axis.text.x = element_text(angle = -35, hjust = 0), legend.position = "right") +
   ylab("Size (GB)") +
   scale_x_discrete(breaks = df_size$order, labels = df_size$method) +
   scale_fill_manual(

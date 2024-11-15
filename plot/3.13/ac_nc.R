@@ -23,25 +23,12 @@ df_ave <- data.frame(
 a <- ggplot(df, aes(x = domain, y = nc)) +
   geom_violin(aes(fill = domain)) +
   scale_x_discrete(limits = sorted_domain) +
-  scale_fill_manual(
-    limits = sorted_domain,
-    values = c("grey50", "blue", "brown", "purple")
-  ) +
+  scale_fill_manual(limits = sorted_domain, values = c("grey50", "blue", "brown", "purple")) +
   ylab("NC") +
   theme(axis.title.x = element_blank(), legend.position = "none")
 
-b <-
-  ggplot(df_ave, aes(x = domain, y = ave.nc, label = ave.nc)) +
-  geom_segment(
-    aes(
-      x = domain,
-      xend = domain,
-      y = 0.85,
-      yend = ave.nc,
-    ),
-    linewidth = 0.75,
-    color = df_ave$color
-  ) +
+b <- ggplot(df_ave, aes(x = domain, y = ave.nc, label = ave.nc)) +
+  geom_segment(aes(x = domain, xend = domain, y = 0.85, yend = ave.nc), linewidth = 0.75, color = df_ave$color) +
   geom_point(size = 15, color = df_ave$color) +
   geom_text(color = "white", size = 3) +
   ylim(0.85, 1) +

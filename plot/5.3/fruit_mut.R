@@ -14,10 +14,7 @@ syn <- read.table(file_in_syn, header = TRUE)
 all <- data.frame(rbind(data.frame(dataset = "Synthetic", syn), real))
 
 # Plot
-plot <- ggplot(
-  all[all$k %in% c(5:10), ],
-  aes(x = mut, y = unqRat, color = factor(k))
-) +
+plot <- ggplot(all[all$k %in% c(5:10), ], aes(x = mut, y = unqRat, color = factor(k))) +
   geom_line(linewidth = 1) +
   xlab("Mutation rate %") +
   ylab("Uniqueness ratio") +

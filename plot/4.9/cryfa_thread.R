@@ -141,18 +141,11 @@ a <- ggplot(df_time, aes(thread, time * 60)) +
     color = "lightgray", linewidth = 1.0,
     position = position_dodge2(0.6, reverse = TRUE)
   ) +
-  geom_point(
-    aes(color = state),
-    position = position_dodge2(0.6, reverse = TRUE),
-    size = 3.75
-  ) +
+  geom_point(aes(color = state), position = position_dodge2(0.6, reverse = TRUE), size = 3.75) +
   facet_grid(type ~ dataset) +
   xlab("Number of threads") +
   ylab("Time (sec)") +
-  scale_color_discrete(
-    breaks = c("enc", "dec"),
-    labels = c("Compact &\nEncrypt", "Decrypt &\nUnpack")
-  ) +
+  scale_color_discrete(breaks = c("enc", "dec"), labels = c("Compact &\nEncrypt", "Decrypt &\nUnpack")) +
   theme(legend.title = element_blank())
 
 b <- ggplot(df_memory, aes(thread, memory)) +
@@ -161,18 +154,11 @@ b <- ggplot(df_memory, aes(thread, memory)) +
     color = "lightgray", linewidth = 1.0,
     position = position_dodge2(0.6, reverse = TRUE)
   ) +
-  geom_point(
-    aes(color = state),
-    position = position_dodge2(0.6, reverse = TRUE),
-    size = 3.75
-  ) +
+  geom_point(aes(color = state), position = position_dodge2(0.6, reverse = TRUE), size = 3.75) +
   facet_grid(~dataset) +
   xlab("Number of threads") +
   ylab("Memory (MB)") +
-  scale_color_discrete(
-    breaks = c("enc", "dec"),
-    labels = c("Compact &\nEncrypt", "Decrypt &\nUnpack")
-  ) +
+  scale_color_discrete(breaks = c("enc", "dec"), labels = c("Compact &\nEncrypt", "Decrypt &\nUnpack")) +
   theme(legend.title = element_blank())
 
 # Save plot

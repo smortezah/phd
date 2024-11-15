@@ -40,10 +40,5 @@ c <- ggplot(data_stat, aes(x = k, y = 1 / 21^k)) +
   ylab(expression(Probability ~ (1 / 21^k)))
 
 # Save plot
-plot <- ggarrange(
-  a,
-  ggarrange(b, c, nrow = 2, align = "v", labels = c("b", "c")),
-  labels = "a",
-  widths = 5:3
-)
+plot <- ggarrange(a, ggarrange(b, c, nrow = 2, align = "v", labels = c("b", "c")), labels = "a", widths = 5:3)
 ggsave(file_out, plot = plot)

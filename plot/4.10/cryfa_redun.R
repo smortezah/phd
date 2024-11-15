@@ -27,11 +27,7 @@ g11 <- ggplot(cryfa, aes(x = Size / 1024 / 1024, y = NC, color = Category)) +
     labels = c("Archaea", "Bacteria", "Fungi", "Plants", "Viruses"),
     values = color_list
   ) +
-  scale_y_continuous(
-    limits = c(1.3, 1.5),
-    breaks = c(1.3, 1.4, 1.5),
-    labels = c(1.3, 1.4, 1.5)
-  ) +
+  scale_y_continuous(limits = c(1.3, 1.5), breaks = c(1.3, 1.4, 1.5), labels = c(1.3, 1.4, 1.5)) +
   xlim(0, 2) +
   theme(axis.title.x = element_blank()) +
   ggtitle("Cryfa") +
@@ -45,45 +41,21 @@ plants <- subset(cryfa, Category == "P")
 viruses <- subset(cryfa, Category == "V")
 df_pointrange <- data.frame(
   Category = c("A", "B", "F", "P", "V"),
-  lower = c(
-    min(archaea[, "NC"]),
-    min(bacteria[, "NC"]),
-    min(fungi[, "NC"]),
-    min(plants[, "NC"]),
-    min(viruses[, "NC"])
-  ),
+  lower = c(min(archaea[, "NC"]), min(bacteria[, "NC"]), min(fungi[, "NC"]), min(plants[, "NC"]), min(viruses[, "NC"])),
   mean = c(
-    mean(archaea[, "NC"]),
-    mean(bacteria[, "NC"]),
-    mean(fungi[, "NC"]),
-    mean(plants[, "NC"]),
-    mean(viruses[, "NC"])
+    mean(archaea[, "NC"]), mean(bacteria[, "NC"]), mean(fungi[, "NC"]), mean(plants[, "NC"]), mean(viruses[, "NC"])
   ),
-  upper = c(
-    max(archaea[, "NC"]),
-    max(bacteria[, "NC"]),
-    max(fungi[, "NC"]),
-    max(plants[, "NC"]),
-    max(viruses[, "NC"])
-  )
+  upper = c(max(archaea[, "NC"]), max(bacteria[, "NC"]), max(fungi[, "NC"]), max(plants[, "NC"]), max(viruses[, "NC"]))
 )
 
 g12 <- ggplot(df_pointrange) +
   geom_pointrange(
-    aes(x = Category, ymin = lower, y = mean, ymax = upper, color = Category),
-    fill = "white",
-    fatten = 4,
-    shape = 23
+    aes(x = Category, ymin = lower, y = mean, ymax = upper, color = Category), fill = "white", fatten = 4, shape = 23
   ) +
   theme(axis.title.x = element_blank(), axis.title.y = element_blank()) +
   scale_color_manual(values = color_list) +
   scale_fill_manual(values = color_list) +
-  scale_y_continuous(
-    position = "left",
-    limits = c(1.3, 1.5),
-    breaks = c(1.3, 1.4, 1.5),
-    labels = c(1.3, 1.4, 1.5)
-  ) +
+  scale_y_continuous(position = "left", limits = c(1.3, 1.5), breaks = c(1.3, 1.4, 1.5), labels = c(1.3, 1.4, 1.5)) +
   ggtitle("Cryfa")
 
 ## 2.1
@@ -104,35 +76,16 @@ plants <- subset(deliminate, Category == "P")
 viruses <- subset(deliminate, Category == "V")
 df_pointrange <- data.frame(
   Category = c("A", "B", "F", "P", "V"),
-  lower = c(
-    min(archaea[, "NC"]),
-    min(bacteria[, "NC"]),
-    min(fungi[, "NC"]),
-    min(plants[, "NC"]),
-    min(viruses[, "NC"])
-  ),
+  lower = c(min(archaea[, "NC"]), min(bacteria[, "NC"]), min(fungi[, "NC"]), min(plants[, "NC"]), min(viruses[, "NC"])),
   mean = c(
-    mean(archaea[, "NC"]),
-    mean(bacteria[, "NC"]),
-    mean(fungi[, "NC"]),
-    mean(plants[, "NC"]),
-    mean(viruses[, "NC"])
+    mean(archaea[, "NC"]), mean(bacteria[, "NC"]), mean(fungi[, "NC"]), mean(plants[, "NC"]), mean(viruses[, "NC"])
   ),
-  upper = c(
-    max(archaea[, "NC"]),
-    max(bacteria[, "NC"]),
-    max(fungi[, "NC"]),
-    max(plants[, "NC"]),
-    max(viruses[, "NC"])
-  )
+  upper = c(max(archaea[, "NC"]), max(bacteria[, "NC"]), max(fungi[, "NC"]), max(plants[, "NC"]), max(viruses[, "NC"]))
 )
 
 g22 <- ggplot(df_pointrange) +
   geom_pointrange(
-    aes(x = Category, ymin = lower, y = mean, ymax = upper, color = Category),
-    fill = "white",
-    fatten = 4,
-    shape = 23
+    aes(x = Category, ymin = lower, y = mean, ymax = upper, color = Category), fill = "white", fatten = 4, shape = 23
   ) +
   theme(axis.title.x = element_blank(), axis.title.y = element_blank()) +
   scale_color_manual(values = color_list) +
@@ -159,35 +112,16 @@ plants <- subset(mfcompress, Category == "P")
 viruses <- subset(mfcompress, Category == "V")
 df_pointrange <- data.frame(
   Category = c("A", "B", "F", "P", "V"),
-  lower = c(
-    min(archaea[, "NC"]),
-    min(bacteria[, "NC"]),
-    min(fungi[, "NC"]),
-    min(plants[, "NC"]),
-    min(viruses[, "NC"])
-  ),
+  lower = c(min(archaea[, "NC"]), min(bacteria[, "NC"]), min(fungi[, "NC"]), min(plants[, "NC"]), min(viruses[, "NC"])),
   mean = c(
-    mean(archaea[, "NC"]),
-    mean(bacteria[, "NC"]),
-    mean(fungi[, "NC"]),
-    mean(plants[, "NC"]),
-    mean(viruses[, "NC"])
+    mean(archaea[, "NC"]), mean(bacteria[, "NC"]), mean(fungi[, "NC"]), mean(plants[, "NC"]), mean(viruses[, "NC"])
   ),
-  upper = c(
-    max(archaea[, "NC"]),
-    max(bacteria[, "NC"]),
-    max(fungi[, "NC"]),
-    max(plants[, "NC"]),
-    max(viruses[, "NC"])
-  )
+  upper = c(max(archaea[, "NC"]), max(bacteria[, "NC"]), max(fungi[, "NC"]), max(plants[, "NC"]), max(viruses[, "NC"]))
 )
 
 g32 <- ggplot(df_pointrange) +
   geom_pointrange(
-    aes(x = Category, ymin = lower, y = mean, ymax = upper, color = Category),
-    fill = "white",
-    fatten = 4,
-    shape = 23
+    aes(x = Category, ymin = lower, y = mean, ymax = upper, color = Category), fill = "white", fatten = 4, shape = 23
   ) +
   theme(axis.title.y = element_blank()) +
   scale_color_manual(values = color_list) +
