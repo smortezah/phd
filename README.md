@@ -4,7 +4,11 @@ This repository includes my PhD thesis and the source code for generating the pl
 
 ## Thesis
 
-The complete thesis, titled **"Compression models and tools for omics data"**, can be found in `thesis.pdf`.
+The complete thesis, titled **"Compression models and tools for omics data"**, can be found in [thesis.pdf](thesis.pdf).
+
+### Plots
+
+The plots used in the thesis can be found in the [plot directory](plot/README.md). Each plot is stored in its own directory and includes the R code for generating the plot, the data used, and the plot itself.
 
 ### Abstract
 
@@ -32,7 +36,11 @@ Here is the list of chapters in the thesis:
 6. Detection and visualization of genomic rearrangements
 7. Conclusion
 
-## Citation
+### Keywords
+
+Relative compression, Markov model, omics data compression, omics data, encryption, alignment-free method, genomic rearrangement, comparative genomics
+
+### Citation
 
 If you find this work useful, please cite it as:
 
